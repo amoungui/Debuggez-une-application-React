@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
+// eslint-disable-next-line import/order
+import { v4 as uuidv4 } from 'uuid';
 
 import "./style.scss";
 
@@ -24,7 +26,7 @@ const Slider = () => {
       {byDateDesc?.map((event, idx) => (
         <>
           <div
-            key={event.title}
+            key={`${event.title}-${uuidv4()}`}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -42,7 +44,7 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`${event.id}-${uuidv4()}`}
                   type="radio"
                   name="radio-button"
                   checked={idx === radioIdx}
