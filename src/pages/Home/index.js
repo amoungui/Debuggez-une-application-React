@@ -17,18 +17,20 @@ import { v4 as uuidv4 } from 'uuid';
 const Page = () => {
   const { data } = useData();
 
-  const keys = Object.keys(data);
-  const lastKey = keys[keys.length - 1];
-  const lastValue = data[lastKey];
-
   let last;
-  if (Array.isArray(lastValue)) {
-    last = lastValue[lastValue.length - 1];
+  if (data) {
+    const keys = Object.keys(data);
+    const lastKey = keys[keys.length - 1];
+    const lastValue = data[lastKey];
+
+    if (Array.isArray(lastValue)) {
+      last = lastValue[lastValue.length - 1];
+    }
   }
 
   // eslint-disable-next-line no-console
   console.log('last :', last);
-  
+
   return <>
     <header>
       <Menu />
