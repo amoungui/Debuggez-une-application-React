@@ -20,16 +20,14 @@ const Page = () => {
   let last;
   if (data) {
     const keys = Object.keys(data);
-    const lastKey = keys[keys.length - 1];
-    const lastValue = data[lastKey];
-
-    if (Array.isArray(lastValue)) {
-      last = lastValue[lastValue.length - 1];
+    if (keys.length > 0) {
+      const lastKey = keys[keys.length - 1];
+      const lastValue = data[lastKey];
+      if (Array.isArray(lastValue)) {
+        last = lastValue[lastValue.length - 1];
+      }
     }
   }
-
-  // eslint-disable-next-line no-console
-  console.log('last :', last);
 
   return <>
     <header>
