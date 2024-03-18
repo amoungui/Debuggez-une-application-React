@@ -24,9 +24,8 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        <div key={`${event.title}-${uuidv4()}`}>
           <div
-            key={`${event.title}-${uuidv4()}`}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -48,11 +47,12 @@ const Slider = () => {
                   type="radio"
                   name="radio-button"
                   checked={idx === radioIdx}
+                  onChange={() => setIndex(radioIdx)} // Ajout du gestionnaire onChange
                 />
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
