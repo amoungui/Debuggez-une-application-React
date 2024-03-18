@@ -15,7 +15,24 @@ import { useData } from "../../contexts/DataContext";
 import { v4 as uuidv4 } from 'uuid';
 
 const Page = () => {
-  const {last} = useData()
+  const { data } = useData();
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  const keys = Object.keys(data);
+  const lastKey = keys[keys.length - 1];
+  const lastValue = data[lastKey];
+
+  let last;
+  if (Array.isArray(lastValue)) {
+    last = lastValue[lastValue.length - 1];
+  }
+
+  // eslint-disable-next-line no-console
+  console.log('last :', last);
+  
   return <>
     <header>
       <Menu />
@@ -124,14 +141,18 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
-        <EventCard
-          key={`EventCard-1-${uuidv4()}`}
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
-          small
-          label="boom"
-        />
+        <p>djhlskgfjhlfkjdh; {last}</p>
+        {last && (
+          <EventCard
+            key={`EventCard-1-${uuidv4()}`}
+            imageSrc={last.cover}
+            title={last.title}
+            date={new Date(last.date)}
+            small
+            label="boom"
+          />
+        )}
+
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
