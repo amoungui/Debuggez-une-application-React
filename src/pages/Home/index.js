@@ -17,10 +17,6 @@ import { v4 as uuidv4 } from 'uuid';
 const Page = () => {
   const { data } = useData();
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-
   const keys = Object.keys(data);
   const lastKey = keys[keys.length - 1];
   const lastValue = data[lastKey];
