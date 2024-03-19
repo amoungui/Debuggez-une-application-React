@@ -55,7 +55,7 @@ const Slider = () => {
                   key={`${event.id}-${uuidv4()}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={index === radioIdx}
                   onChange={() => setIndex(radioIdx)} // Ajout du gestionnaire onChange
                 />
               ))}
