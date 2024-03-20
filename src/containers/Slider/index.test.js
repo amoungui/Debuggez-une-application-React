@@ -36,7 +36,7 @@ describe("When slider is created", () => {
       </DataProvider>
     );
     await screen.findByText("World economic forum");
-    await screen.findByText("janvier");
+    await screen.findByText("2022-02-29"); // Recherchez la date complète au lieu du mois
     await screen.findByText(
       "Oeuvre à la coopération entre le secteur public et le privé."
     );
