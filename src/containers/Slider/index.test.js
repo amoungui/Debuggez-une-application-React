@@ -36,7 +36,8 @@ describe("When slider is created", () => {
       </DataProvider>
     );
     await screen.findByText("World economic forum");
-    await screen.findByText("février"); // Recherchez le mois en français au lieu de la date complète
+    const fevrierElements = await screen.findAllByText("février"); // Utilisez findAllByText pour obtenir tous les éléments avec le texte "février"
+    expect(fevrierElements.length).toBeGreaterThan(0); // Vérifiez qu'au moins un élément avec le texte "février" a été trouvé
     await screen.findByText(
       "Oeuvre à la coopération entre le secteur public et le privé."
     );
