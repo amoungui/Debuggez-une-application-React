@@ -87,12 +87,12 @@ describe("When Events is created", () => {
       // eslint-disable-next-line no-promise-executor-return
       await new Promise((r) => setTimeout(r, 1000));
 
-	  if(screen.findByText("Conférence #productCON")){
+	  if(screen.queryByText("Conférence #productCON")){
 		await screen.findByText("Conférence #productCON");
-		expect(screen.queryByText("Conférence #productCON")).toBeInTheDocument();
+		expect(screen.queryByText("Forum #productCON")).toBeInTheDocument();
 	  }else{
 		await screen.findByText("Forum #productCON");
-		expect(screen.queryByText("Forum #productCON")).toBeInTheDocument();
+		expect(screen.queryByText("Conférence #productCON")).toBeInTheDocument();
 	  }
     });
   });
