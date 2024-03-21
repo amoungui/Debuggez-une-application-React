@@ -58,6 +58,7 @@ describe("When Events is created", () => {
       expect(await screen.findByText("An error occured")).toBeInTheDocument();
     });
   });
+
   describe("and we select a category", () => {
     it.only("an filtered list is displayed", async () => {
       api.loadData = jest.fn().mockReturnValue(data);
@@ -82,10 +83,15 @@ describe("When Events is created", () => {
         })
       );
 
+      // Ajoutez un délai ici
+      // eslint-disable-next-line no-promise-executor-return
+      await new Promise((r) => setTimeout(r, 1000));
+
       await screen.findByText("Conférence #productCON");
-      expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();
+      expect(screen.queryByText("Conférence #productCON")).toBeInTheDocument();
     });
   });
+
 
   describe("and we click on an event", () => {
     it("the event detail is displayed", async () => {

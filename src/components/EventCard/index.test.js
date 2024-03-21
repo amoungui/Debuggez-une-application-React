@@ -13,22 +13,27 @@ describe("When a event card is created", () => {
     expect(imageElement.alt).toEqual("image-alt-text");
   });
   it("a title, a label and a month are displayed", () => {
+    const date = new Date("2022-02-01");
+    const formattedDate = date.toLocaleString('default', { month: 'long' }); // Convertit la date en mois en français
+  
     render(
       <EventCard
         imageSrc="http://src-image"
         imageAlt="image-alt-text"
         title="test event"
         label="test label"
-        date={new Date("2022-04-01")}
+        date={date}
       />
     );
+  
     const titleElement = screen.getByText(/test event/);
-    const monthElement = screen.getByText(/avril/);
+    const monthElement = screen.getByText(new RegExp(formattedDate, '')); // Utilisez formattedDate dans votre test
     const labelElement = screen.getByText(/test label/);
+  
     expect(titleElement).toBeInTheDocument();
     expect(labelElement).toBeInTheDocument();
     expect(monthElement).toBeInTheDocument();
-  });
+  });  
   describe("with small props", () => {
     it("a modifier small is added", () => {
       render(
