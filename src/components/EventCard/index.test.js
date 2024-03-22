@@ -14,7 +14,6 @@ describe("When a event card is created", () => {
   });
   it("a title, a label and a month are displayed", () => {
     const date = new Date("2022-02-01");
-    const formattedDate = date.toLocaleString('default', { month: 'long' }); // Convertit la date en mois en français
   
     render(
       <EventCard
