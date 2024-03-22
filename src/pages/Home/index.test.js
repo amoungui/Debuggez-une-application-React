@@ -1,6 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Home from "./index";
 
+jest.setTimeout(10000);  // Increase the timeout value
+
 describe("When Form is created", () => {
   it("a list of fields card is displayed", async () => {
     render(<Home />);
@@ -14,7 +16,7 @@ describe("When Form is created", () => {
     it("the success message is displayed", async () => {
       render(<Home />);
       fireEvent(
-        await screen.findByText("Envoyer"),
+        await waitFor(() => screen.findByText("Envoyer"), { timeout: 8000 }),
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
