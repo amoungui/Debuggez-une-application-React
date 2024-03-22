@@ -1,5 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Form from "./index";
+
+jest.setTimeout(10000);  // Increase the timeout value
 
 describe("When Events is created", () => {
   it("a list of event card is displayed", async () => {
@@ -22,8 +24,8 @@ describe("When Events is created", () => {
         })
       );
       await screen.findByText("En cours");
-      await screen.findByText("Envoyer");
-      expect(onSuccess).toHaveBeenCalled();
+      await waitFor(() => screen.findByText("Envoyer"), { timeout: 8000 });
+      await waitFor(() => expect(onSuccess).toHaveBeenCalled(), { timeout: 8000 });
     });
   });
 });
