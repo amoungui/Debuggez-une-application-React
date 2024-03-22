@@ -27,7 +27,7 @@ describe("When a event card is created", () => {
     );
   
     const titleElement = screen.getByText(/test event/);
-    const monthElement = screen.getByText(new RegExp(formattedDate, '')); // Utilisez formattedDate dans votre test
+    const monthElement = screen.getByText(/janvier/); // Change this to the month you expect
     const labelElement = screen.getByText(/test label/);
   
     expect(titleElement).toBeInTheDocument();
