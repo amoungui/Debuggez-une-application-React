@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EventCard from "../../components/EventCard";
 import Select from "../../components/Select";
 import { useData } from "../../contexts/DataContext";
@@ -13,21 +13,24 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
-  // Filtrer les événements par type si un type est sélectionné
-  const filteredEvents = (
-    (!type
-      ? data?.events
-      : data?.events.filter(event => event.type === type)) || []
-  ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
-    return false;
-  });
+  useEffect(() => {
+    const events = (
+      (!type
+        ? data?.events
+        : data?.events.filter(event => event.type === type)) || []
+    ).filter((event, index) => {
+      if (
+        (currentPage - 1) * PER_PAGE <= index &&
+        PER_PAGE * currentPage > index
+      ) {
+        return true;
+      }
+      return false;
+    });
+    setFilteredEvents(events);
+  }, [type, currentPage, data]);
 
   const changeType = (evtType) => {
     setCurrentPage(1);
