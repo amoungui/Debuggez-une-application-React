@@ -4,6 +4,8 @@ import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
+import "./style.scss";
+
 const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 1000); })
 
 const Form = ({ onSuccess, onError }) => {
@@ -25,32 +27,36 @@ const Form = ({ onSuccess, onError }) => {
     [onSuccess, onError]
   );
   return (
-    <form onSubmit={sendContact}>
-      <div className="row">
-        <div className="col">
-          <Field placeholder="" label="Nom" />
-          <Field placeholder="" label="Prénom" />
-          <Select
-            selection={["Personel", "Entreprise"]}
-            onChange={() => null}
-            label="Personel / Entreprise"
-            type="large"
-            titleEmpty
-          />
-          <Field placeholder="" label="Email" />
-          <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
-            {sending ? "En cours" : "Envoyer"}
-          </Button>
+    <div className="contact_form">
+      <form onSubmit={sendContact} className="ContactForm">
+        <div className="row">
+          <div className="col">
+            <Field placeholder="" label="Nom" />
+            <Field placeholder="" label="Prénom" />
+            <Select
+              className="contact_select"
+              selection={["Personel", "Entreprise"]}
+              onChange={() => null}
+              label="Personel / Entreprise"
+              type="large"
+              titleEmpty
+            />
+            <Field placeholder="" label="Email" />
+            <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
+              {sending ? "En cours" : "Envoyer"}
+            </Button>
+          </div>
+          <div className="col">
+            <Field
+              placeholder="message"
+              label="Message"
+              type={FIELD_TYPES.TEXTAREA}
+            />
+          </div>
         </div>
-        <div className="col">
-          <Field
-            placeholder="message"
-            label="Message"
-            type={FIELD_TYPES.TEXTAREA}
-          />
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
+
   );
 };
 
