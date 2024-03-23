@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import EventCard from "../../components/EventCard";
 import Select from "../../components/Select";
 import { useData } from "../../contexts/DataContext";
@@ -16,28 +16,18 @@ const EventList = () => {
   const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
-    const events = (
-      (!type
-        ? data?.events
-        : data?.events.filter(event => event.type === type)) || []
-    ).filter((event, index) => {
-      if (
-        (currentPage - 1) * PER_PAGE <= index &&
-        PER_PAGE * currentPage > index
-      ) {
-        return true;
-      }
-      return false;
-    });
-    setFilteredEvents(events);
+    let events = data?.events || [];
+    if (type) {
+      events = events.filter(event => event.type.toLowerCase() === type.toLowerCase());
+    }
+    setFilteredEvents(events.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE));
   }, [type, currentPage, data]);
 
   const changeType = (evtType) => {
     setCurrentPage(1);
-    setType(evtType);
+    setType(evtType || null);
   };
 
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
 
   return (
@@ -49,6 +39,7 @@ const EventList = () => {
         <>
           <h3 className="SelectTitle">Catégories</h3>
           <Select
+            key={type}
             selection={Array.from(typeList)}
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
@@ -68,9 +59,9 @@ const EventList = () => {
             ))}
           </div>
           <div className="Pagination">
-            {[...Array(pageNumber || 0)].map((_, n) => (
+            {[...Array(Math.ceil((data?.events.length || 0) / PER_PAGE))].map((_, n) => (
               // eslint-disable-next-line react/no-array-index-key
-              <a key={n} href="#events" onClick={() => setCurrentPage(n + 1)}>
+              <a key={`page-link-${n}`} href="#events" onClick={() => setCurrentPage(n + 1)}>
                 {n + 1}
               </a>
             ))}
