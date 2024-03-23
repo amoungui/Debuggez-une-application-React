@@ -41,8 +41,9 @@ const EventList = () => {
           <Select
             key={type}
             selection={Array.from(typeList)}
-            onChange={(value) => (value ? changeType(value) : changeType(null))}
+            onChange={changeType} // Passez changeType à onChange
           />
+
           <div id="events" className="ListContainer">
             {filteredEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
