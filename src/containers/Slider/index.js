@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
-// eslint-disable-next-line import/order
-import { v4 as uuidv4 } from 'uuid';
 
 import "./style.scss";
+
+// eslint-disable-next-line import/order
+import { v4 } from 'uuid';
+
+const uuidv4 = v4;
+
 
 const Slider = () => {
   const { data } = useData();

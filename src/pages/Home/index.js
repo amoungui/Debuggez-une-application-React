@@ -12,7 +12,10 @@ import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 // eslint-disable-next-line import/order
-import { v4 as uuidv4 } from 'uuid';
+import { v4 } from 'uuid';
+
+const uuidv4 = v4;
+
 
 const Page = () => {
   const { data } = useData();
