@@ -9,9 +9,10 @@ describe("Icon component", () => {
             expect(md5(screen.getByTestId("icon").getAttribute('d'))).toEqual('327fbc38c8e878259c3ec35ef231517a')
         });
     });
-    describe("When a icon is created with name facebook", () => {
-        it("the icon contain this path hash value bbea4c9e40773b969fdb6e406059f853", () => {
-            // to complete
+    describe("When an icon is created with name facebook", () => {
+        it("the icon contains this path hash value bbea4c9e40773b969fdb6e406059f853", () => {
+            render(<Icon name="facebook" />)
+            expect(md5(screen.getByTestId("icon").getAttribute('d'))).toEqual('bbea4c9e40773b969fdb6e406059f853')
         });
     });
 })
