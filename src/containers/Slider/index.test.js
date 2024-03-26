@@ -8,7 +8,7 @@ const data = {
       title: "World economic forum",
       description:
         "Oeuvre à la coopération entre le secteur public et le privé.",
-      date: "2022-02-29T20:28:45.744Z",
+      date: "2022-01-29T20:28:45.744Z",
       cover: "/images/evangeline-shaw-nwLTVwb7DbU-unsplash1.png",
     },
     {
@@ -36,7 +36,7 @@ describe("When slider is created", () => {
       </DataProvider>
     );
     await screen.findByText("World economic forum");
-    const fevrierElements = await screen.findAllByText("février"); // Utilisez findAllByText pour obtenir tous les éléments avec le texte "février"
+    const fevrierElements = await screen.findAllByText("janvier"); // Utilisez findAllByText pour obtenir tous les éléments avec le texte "février"
     expect(fevrierElements.length).toBeGreaterThan(0); // Vérifiez qu'au moins un élément avec le texte "février" a été trouvé
     await screen.findByText(
       "Oeuvre à la coopération entre le secteur public et le privé."
