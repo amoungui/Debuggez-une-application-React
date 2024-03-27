@@ -36,8 +36,8 @@ describe("When slider is created", () => {
       </DataProvider>
     );
     await screen.findByText("World economic forum");
-    const fevrierElements = await screen.findAllByText("janvier"); // Utilisez findAllByText pour obtenir tous les éléments avec le texte "février"
-    expect(fevrierElements.length).toBeGreaterThan(0); // Vérifiez qu'au moins un élément avec le texte "février" a été trouvé
+    const janvierElements = await screen.findAllByText("janvier"); // Utilisez findAllByText pour obtenir tous les éléments avec le texte "février"
+    expect(janvierElements.length).toBeGreaterThan(0); // Vérifiez qu'au moins un élément avec le texte "février" a été trouvé
     await screen.findByText(
       "Oeuvre à la coopération entre le secteur public et le privé."
     );
