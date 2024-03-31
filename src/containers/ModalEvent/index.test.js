@@ -18,9 +18,16 @@ const data = {
   ],
 };
 
+// Début de la description des tests pour le composant 'ModalEvent'
 describe("When Modal data is created", () => {
+
+  // Test spécifique pour vérifier qu'une liste de données obligatoires est affichée
   it("a list of mandatories data is displayed", async () => {
+
+    // Rendu du composant 'ModalEvent' avec les données de l'événement
     render(<ModalEvent event={data} />);
+
+    // Attente de l'affichage des textes "1 espace d’exposition", "24-25-26 Février", "Présentation des outils analytics aux professionnels du secteur" et "Conférence #productCON"
     await screen.findByText("1 espace d’exposition");
     await screen.findByText("24-25-26 Février");
     await screen.findByText(
